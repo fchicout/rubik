@@ -3,15 +3,18 @@ package br.edu.uniaeso.model;
 import java.awt.Color;
 
 public class RubikSide {
-    private Color[][] side = new Color[3][3];
+    private Color[][] side;
 
     private SideID sideID;
     private SideColor sideColor;
+    private Integer sideSize;
 
-    public RubikSide(SideID sideId, SideColor sideColor) {
+    public RubikSide(SideID sideId, SideColor sideColor, Integer sideSize) {
         setSideID(sideID);
+        setSide(new Color[sideSize][sideSize]);
         initialize(sideColor);
     }
+
 
     private void initialize(SideColor sideColor) {
         for (int i = 0; i < side.length; i++) {
@@ -43,14 +46,6 @@ public class RubikSide {
         this.sideColor = sideColor;
     }
 
-    public SideState getSideState() {
-        return sideState;
-    }
-
-    public void setSideState(SideState sideState) {
-        this.sideState = sideState;
-    }
-
     public SideID getSideID() {
         return sideID;
     }
@@ -66,5 +61,12 @@ public class RubikSide {
     public void setSide(Color[][] side) {
         this.side = side;
     }
+    
+    public Integer getSideSize() {
+        return sideSize;
+    }
 
+    public void setSideSize(Integer sideSize) {
+        this.sideSize = sideSize;
+    }
 }
