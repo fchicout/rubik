@@ -15,7 +15,6 @@ public class RubikSide {
         initialize(sideColor);
     }
 
-
     private void initialize(SideColor sideColor) {
         for (int i = 0; i < side.length; i++) {
             for (int j = 0; j < side[i].length; j++) {
@@ -61,12 +60,41 @@ public class RubikSide {
     public void setSide(Color[][] side) {
         this.side = side;
     }
-    
+
     public Integer getSideSize() {
         return sideSize;
     }
 
     public void setSideSize(Integer sideSize) {
         this.sideSize = sideSize;
+    }
+
+    public void setColumn(Color[] newColumn, Integer index) {
+        for (int i = 0; i < side.length; i++) {
+            side[i][index] = newColumn[i];
+        }
+    }
+
+    public void setRow(Color[] newRow, Integer index) {
+        for (int i = 0; i < side.length; i++) {
+            side[index][i] = newRow[i];
+        }
+    }
+
+    public Color[] getColumn(Integer index) {
+        Color[] c = new Color[getSideSize()];
+        for (int i = 0; i < side.length; i++) {
+            c[i] = side[i][index];
+        }
+        return c;
+    }
+
+    public Color[] getRow(Integer index) {
+        Color[] c = new Color[getSideSize()];
+
+        for (int i = 0; i < side.length; i++) {
+            c[i] = side[index][i];
+        }
+        return c;
     }
 }
