@@ -2,6 +2,8 @@ package br.edu.uniaeso.model;
 
 import java.awt.Color;
 
+import br.edu.uniaeso.utils.MatrixUtils;
+
 public class RubikCube implements ICubicRubik {
     private RubikSide[] cube = new RubikSide[6];
 
@@ -30,19 +32,7 @@ public class RubikCube implements ICubicRubik {
         for (RubikSide rubikSide : cube) {
             if (rubikSide.getSideID() == SideID.LEFT) {
                 Color[][] rotateSide = new Color[rubikSide.getSideSize()][rubikSide.getSideSize()];
-                rotateSide[0][0] = rubikSide.getSide()[2][0];
-                rotateSide[0][1] = rubikSide.getSide()[1][0];
-                rotateSide[0][2] = rubikSide.getSide()[0][0];
-
-                rotateSide[1][0] = rubikSide.getSide()[2][1];
-                rotateSide[1][1] = rubikSide.getSide()[1][1];
-                rotateSide[1][2] = rubikSide.getSide()[0][1];
-
-                rotateSide[2][0] = rubikSide.getSide()[2][2];
-                rotateSide[2][1] = rubikSide.getSide()[1][2];
-                rotateSide[2][2] = rubikSide.getSide()[0][2];
-
-                rubikSide.setSide(rotateSide);
+                rubikSide.setSide(MatrixUtils.rotateMatrixClockwise(rotateSide));
             }
         }
         return this;
@@ -59,9 +49,8 @@ public class RubikCube implements ICubicRubik {
     @Override
     public RubikCube rotateLeftClockwise() {
         faceRotateClockwise(SideID.LEFT);
-        swapColumn(SideID.FRONT, SideID.DOWN, 0).
-        swapColumn(SideID.UP, SideID.FRONT, 0).
-        swapColumn(SideID.BACK, SideID.UP, 0);
+        swapColumn(SideID.FRONT, SideID.DOWN, 0).swapColumn(SideID.UP, SideID.FRONT, 0).swapColumn(SideID.BACK,
+                SideID.UP, 0);
         return this;
     }
 
@@ -139,4 +128,7 @@ public class RubikCube implements ICubicRubik {
         }
         return null;
     }
+
+    
+
 }
